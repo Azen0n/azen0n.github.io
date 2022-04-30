@@ -63,7 +63,7 @@ function createButtons() {
 }
 
 function setLetter(letter) {
-    if (currentCol >== 4) {
+    if (currentCol >= 4) {
         return;
     }
     letterBoxes[currentRow * 4 + currentCol].innerHTML = letter;
