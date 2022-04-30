@@ -84,7 +84,7 @@ function checkWord() {
 
     let wordLetters = getWordLetters();
 
-    if (!solutionWords.includes(wordLetters.join('')) || !supportWords.includes(wordLetters.join(''))) {
+    if (!solutionWords.includes(wordLetters.join('')) && !supportWords.includes(wordLetters.join(''))) {
         alert('Not in the dictionary.');
         return;
     }
