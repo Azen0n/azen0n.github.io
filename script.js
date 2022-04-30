@@ -100,7 +100,7 @@ function checkWord() {
         if (chosenWord[i] === letter) {
             fillBox(currentRow, i, '#58D68D');
             fillButton(letter, '#58D68D');
-        } else if (chosenWord.slice(-(chosenWord.length - i)).includes(letter)) {
+        } else if (chosenWord.includes(letter)) {
             fillBox(currentRow, i, '#F4D03F');
             fillButton(letter, '#F4D03F');
         } else {
