@@ -15,6 +15,7 @@ let chosenWord = solutionWords[Math.floor(Math.random() * solutionWords.length)]
 createLetterBoxes();
 let letterBoxes = document.getElementsByClassName('letter');
 createButtons();
+let letterButtons = document.getElementsByTagName('button');
 
 function createLetterBoxes() {
     for (let row = 0; row < 5; ++row) {
@@ -120,24 +121,24 @@ function checkWord() {
 
 function fillBox(i, j, color) {
 	letterBoxes[i * 4 + j].style.background = color;
-    letterBoxes[i * 4 + j].style.border = '2px solid ' + color;
-    letterBoxes[i * 4 + j].style.color = '#FFFFFF';
+    	letterBoxes[i * 4 + j].style.border = '2px solid ' + color;
+    	letterBoxes[i * 4 + j].style.color = '#FFFFFF';
 }
 
 function getWordLetters() {
 	let letters = [];
-    for (let i = 0; i < 4; ++i) {
-  	    letters.push(letterBoxes[currentRow * 4 + i].innerHTML);
-    }
-    return letters;
+    	for (let i = 0; i < 4; ++i) {
+		letters.push(letterBoxes[currentRow * 4 + i].innerHTML);
+    	}
+    	return letters;
 }
 
 function getWordLetters() {
-    let letters = [];
-    for (let i = 0; i < 4; ++i) {
-        letters.push(letterBoxes[currentRow * 4 + i].innerHTML);
-    }
-    return letters;
+    	let letters = [];
+    	for (let i = 0; i < 4; ++i) {
+        	letters.push(letterBoxes[currentRow * 4 + i].innerHTML);
+    	}
+    	return letters;
 }
 
 function endGame() {
