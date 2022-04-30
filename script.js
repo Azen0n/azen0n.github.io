@@ -63,7 +63,7 @@ function createButtons() {
 }
 
 function setLetter(letter) {
-    if (currentCol === 4) {
+    if (currentCol >== 4) {
         return;
     }
     letterBoxes[currentRow * 4 + currentCol].innerHTML = letter;
@@ -71,6 +71,9 @@ function setLetter(letter) {
 }
 
 function clearLetter() {
+    if (currentCol > 4) {
+        return;
+    }
     if (currentCol > 0) {
         --currentCol;
     }
@@ -78,8 +81,11 @@ function clearLetter() {
 }
 
 function checkWord() {
-    if (currentCol != 4) {
+    if (currentCol < 4) {
         alert('Complete the word first.');
+        return;
+    }
+    if (currentCol > 4) {
         return;
     }
 
@@ -94,7 +100,7 @@ function checkWord() {
         if (chosenWord[i] === letter) {
             fillBox(currentRow, i, '#58D68D');
             fillButton(letter, '#58D68D');
-        } else if (chosenWord.includes(letter)) {
+        } else if (chosenWord.slice(-(chosenWord.length - i)).includes(letter)) {
             fillBox(currentRow, i, '#F4D03F');
             fillButton(letter, '#F4D03F');
         } else {
@@ -155,7 +161,7 @@ function endGame() {
 
 function victory() {
     alert('Congratulations!');
-    currentCol = 4;
+    currentCol = 5;
 }
 
 function fillButton(letter, color) {
