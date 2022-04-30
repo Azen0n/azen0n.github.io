@@ -91,17 +91,14 @@ function checkWord() {
 
     for (const [i, letter] of wordLetters.entries()) {
         if (chosenWord[i] === letter) {
-            letterBoxes[currentRow * 4 + i].style.background = '#58D68D';
-            letterBoxes[currentRow * 4 + i].style.border = '2px solid #58D68D';
-            letterBoxes[currentRow * 4 + i].style.color = '#FFFFFF';
+            fillBox(currentRow, i, '#58D68D');
+            fillButton(letter, '#58D68D');
         } else if (chosenWord.includes(letter)) {
-            letterBoxes[currentRow * 4 + i].style.background = '#F4D03F';
-            letterBoxes[currentRow * 4 + i].style.border = '2px solid #F4D03F';
-            letterBoxes[currentRow * 4 + i].style.color = '#FFFFFF';
+            fillBox(currentRow, i, '#F4D03F');
+            fillButton(letter, '#F4D03F');
         } else {
-            letterBoxes[currentRow * 4 + i].style.background = '#5D6D7E';
-            letterBoxes[currentRow * 4 + i].style.border = '2px solid #5D6D7E';
-            letterBoxes[currentRow * 4 + i].style.color = '#FFFFFF';
+            fillBox(currentRow, i, '#5D6D7E');
+            fillButton(letter, '#5D6D7E');
         }
     }
 
@@ -109,16 +106,30 @@ function checkWord() {
         setTimeout(function () {
             victory();
         }, 500);
-    }
-
-    if (currentRow < 4) {
-        ++currentRow;
-        currentCol = 0;
     } else {
-        setTimeout(function () {
+        if (currentRow < 4) {
+            ++currentRow;
+            currentCol = 0;
+        } else {
+            setTimeout(function () {
             endGame();
         }, 500);
+        }
     }
+}
+
+function fillBox(i, j, color) {
+	letterBoxes[i * 4 + j].style.background = color;
+    letterBoxes[i * 4 + j].style.border = '2px solid ' + color;
+    letterBoxes[i * 4 + j].style.color = '#FFFFFF';
+}
+
+function getWordLetters() {
+	let letters = [];
+    for (let i = 0; i < 4; ++i) {
+  	    letters.push(letterBoxes[currentRow * 4 + i].innerHTML);
+    }
+    return letters;
 }
 
 function getWordLetters() {
@@ -136,6 +147,7 @@ function endGame() {
         currentCol = 0;
         lettersContainer.innerHTML = '';
         createLetterBoxes();
+        clearButtons();
         chosenWord = solutionWords[Math.floor(Math.random() * solutionWords.length)];
     }, 3000);
 }
@@ -143,4 +155,18 @@ function endGame() {
 function victory() {
     alert('Congratulations!');
     currentCol = 4;
+}
+
+function fillButton(letter, color) {
+	for (let button of letterButtons) {
+  	if (button.innerHTML === letter) {
+    	button.style.background = color;
+    }
+  }
+}
+
+function clearButtons() {
+	for (let button of letterButtons) {
+  	button.style.background = '#EBEDEF';
+  }
 }
