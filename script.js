@@ -10,8 +10,7 @@ let keyboardLetters = [
     'ZXCVBNM'
 ];
 
-let words = ['PARK', 'TILE', 'BEAR', 'CRAB', 'RULE', 'REAL'];
-let chosenWord = words[Math.floor(Math.random() * words.length)];
+let chosenWord = solutionWords[Math.floor(Math.random() * solutionWords.length)];
 
 createLetterBoxes();
 let letterBoxes = document.getElementsByClassName('letter');
@@ -85,7 +84,7 @@ function checkWord() {
 
     let wordLetters = getWordLetters();
 
-    if (!words.includes(wordLetters.join(''))) {
+    if (!solutionWords.includes(wordLetters.join('')) || !supportWords.includes(wordLetters.join(''))) {
         alert('Not in the dictionary.');
         return;
     }
@@ -137,7 +136,7 @@ function endGame() {
         currentCol = 0;
         lettersContainer.innerHTML = '';
         createLetterBoxes();
-        chosenWord = words[Math.floor(Math.random() * words.length)];
+        chosenWord = solutionWords[Math.floor(Math.random() * solutionWords.length)];
     }, 3000);
 }
 
